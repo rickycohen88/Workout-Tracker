@@ -13,7 +13,7 @@ server.use(express.urlencoded({extended:true}));
 server.use(express.json());
 
 //tells the server where to find public files
-server.use(express.static("public"));
+server.use(express.static('public'));
 // tell server to use morgan with tiny preset
 server.use(morgan('tiny'));
 
