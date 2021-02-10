@@ -8,11 +8,11 @@ HtmlRouter.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname, "../public/index"));
 });
 
-HtmlRouter.get("exercise",(req,res)=>{
+HtmlRouter.get("/exercise",(req,res)=>{
     res.sendFile(path.join(__dirname, "../public/exercise.html"));
 });
 
-HtmlRouter.get("stats",(req,res)=>{
+HtmlRouter.get("/stats",(req,res)=>{
     res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
 
