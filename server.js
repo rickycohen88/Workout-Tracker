@@ -1,19 +1,21 @@
+//*dependencies*
 const express = require("express");
+//logging middleware
 const logger = require("morgan");
+//define a port to utilize for messages
+const PORT = process.env.PORT || 3001;
+//define the server
+const Server = express();
+Server.use(express.urlencoded({ extended: true }));
+Server.use(express.json());
+//tells server to use logger
+Server.use(logger("dev"));
+//tells server where to find static files
+Server.use(express.static("public"));
+//defines routes
+require("./routes/apiRoutes")(Server);
+require("./routes/htmlRoutes")(Server);
 
-const PORT = process.env.PORT || 8080;
-
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(logger("dev"));
-
-app.use(express.static("public"));
-
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
-app.listen(PORT, () => {
+Server.listen(PORT, () => {
     console.log(`Server listening on PORT ${PORT}`);
 });

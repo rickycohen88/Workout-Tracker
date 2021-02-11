@@ -1,8 +1,9 @@
+//dependecies
 const mongoose = require("mongoose");
 const Workout = require("../models/schema.js");
 
 module.exports = function(app) {
-    
+    //create connection to db
     mongoose.connect(
         process.env.MONGODB_URI || 'mongodb://localhost/fitnessTracker',
         {
@@ -12,13 +13,13 @@ module.exports = function(app) {
             useFindAndModify: false
         }
     );
-
+        // error or sucess logging
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
-        console.log("mongoose connected to DB");
+        console.log("connected to DB");
     });
-
+        //  Routes
     app.get("/api/workouts", async (req, res) => {
         try {
             const data = await Workout.find({});

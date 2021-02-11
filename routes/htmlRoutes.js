@@ -1,6 +1,7 @@
-
+//dependencies
 const path = require("path");
 
+//defines the routes inside an function to be exported
 module.exports = function(app) {
 
     app.get('/', (req, res) => {
