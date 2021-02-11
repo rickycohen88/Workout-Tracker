@@ -1,35 +1,19 @@
-//dependency import
-const express = require('express');
-const morgan = require('morgan');
-const mongoose = require('mongoose');
-const HTMLrouter = require('./routes/htmlRoutes');
-const ApiRouter = require('./routes/apiRoutes');
+const express = require("express");
+const logger = require("morgan");
 
-//create//assign express server
-const server = express();
-// set port to listen on
-const PORT = process.env.PORT || 3001;
-//middleware for the server to read and write in the format needed where and when.
-server.use(express.urlencoded({extended:true}));
-server.use(express.json());
+const PORT = process.env.PORT || 8080;
 
-//tells the server where to find public files
-server.use(express.static('./public'));
-// tell server to use morgan with tiny preset
-server.use(morgan('tiny'));
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-//setting up routing
-server.use(HTMLrouter);
-server.use(ApiRouter);
+app.use(logger("dev"));
 
-//mongo database
-mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost:27017/fitnessTracker',
- {
-        useNewUrlParser: true, 
-     useUnifiedTopology: true,
-         useCreateIndex: true,
-       useFindAndModify: false,
- }); // , autoIndex: false 
+app.use(express.static("public"));
 
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-server.listen(PORT,()=>{console.log(`server is listening on port ${PORT}`)})
+app.listen(PORT, () => {
+    console.log(`Server listening on PORT ${PORT}`);
+});

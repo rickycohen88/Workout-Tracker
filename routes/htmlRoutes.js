@@ -1,20 +1,17 @@
-//dependencies
-const express = require('express');
-const path = require('path');
-const HtmlRouter = express.Router();
 
-//routes
-HtmlRouter.get("/",(req,res)=>{
-    res.sendFile(path.join(__dirname, "../public/index"));
-});
+const path = require("path");
 
-HtmlRouter.get("/exercise",(req,res)=>{
-    res.sendFile(path.join(__dirname, "../public/exercise.html"));
-});
+module.exports = function(app) {
 
-HtmlRouter.get("/stats",(req,res)=>{
-    res.sendFile(path.join(__dirname, "../public/stats.html"));
-});
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../public/index.html'));
+    });
 
-//export routes
-module.exports = HtmlRouter;
+    app.get('/stats', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../public/stats.html'));
+    });
+
+    app.get('/exercise', (req, res) => {
+        res.sendFile(path.join(__dirname + '/../public/exercise.html'));
+    });
+}

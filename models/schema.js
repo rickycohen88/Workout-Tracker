@@ -1,25 +1,51 @@
-//dependencies
-const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const {model, Schema} = require("mongoose");
 
-const workoutSchema = new Schema({
-    day:{
-            Type:Date,
-            Default: Date.now
-        },
-    exercises:[
+const WorkoutSchema = new Schema({
+    day: {
+        type: Date,
+        default: Date.now
+    },
+
+    exercises: [
         {
-        type :{type: String, trim: true, required: true},
-        name :{type: String, trim: true, required: true},
-        duration :{type: Number},
-        weight : {type: Number},
-        reps : {type: Number},
-        sets : {type: Number},
-        distance : {type: Number}
+            name: {
+                type: String,
+                trim: true
+            },
+        
+            type: {
+                type: String,
+                trim: true
+            },
+        
+            weight: {
+                type: Number,
+                min: [0]
+            },
+        
+            sets: {
+                type: Number,
+                min: [0]
+            },
+        
+            reps: {
+                type: Number,
+                min: [0]
+            },
+        
+            duration: {
+                type: Number,
+                min: [0]
+            },
+        
+            distance: {
+                type: Number,
+                min: [0]
+            }
         }
     ]
-})
+}, {toJSON: {virtuals: true} });
 
-const workoutRoutine = mongoose.model('workout',workoutSchema);
+const Workout = model("Workout", WorkoutSchema);
 
-module.exports = workoutRoutine;
+module.exports = Workout;
