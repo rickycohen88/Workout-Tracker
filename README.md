@@ -1,4 +1,6 @@
 # Workout-Tracker
+Click here to view deployment<br>
+[Link](https://thawing-coast-73886.herokuapp.com/?id=602ebba5b31aed001549f420)
 
 ## *Objective* 
     To produce a program that stores persistant data to aid in a persons health and finess goals. 
@@ -29,6 +31,8 @@ just download the files directly from git hub.
 
 ### How To
 
+Click here to view deployment<br>
+[Link](https://thawing-coast-73886.herokuapp.com/?id=602ebba5b31aed001549f420)
 
 ### screenshots / Code example
 ![Image](./public/home.JPG"home page")<br>
